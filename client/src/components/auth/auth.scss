@@ -1,0 +1,112 @@
+.login , .register{
+    width: 100%; height: 90vh;
+    position: relative;
+
+    .divLogin{
+        padding: 15px;
+        position: absolute;
+        width: 30%;height: max-content;
+        top: 50%; left: 50%;
+        transform: translate(-50% ,-50%);
+        text-align: center;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        border-radius: 1pc;
+        
+        label{
+            font-size: 35px;
+            width: 100%; 
+            margin-bottom: 30px;
+        }
+       input {
+        display: block;
+        width: 100%;
+        padding: 5px;
+         margin-top: 20px;
+         font-size: 18px;
+         outline: none;
+         border: 1px solid white ;
+         border-radius: 5pt;
+         border-bottom: 1px solid #ddd;
+         font-size: 16px;
+       }
+       p.forget{
+        color: black;
+        margin-top: 10px;
+        text-align: end;
+        font-size: 16px;
+       }
+       p.forget:hover{
+        text-decoration: underline;
+       }
+       .btn {
+           color:white;
+           background-color: #202020;
+           margin-bottom: 15px;
+           width: 100%;
+           border-radius: 5pt;
+           padding: 4px;
+           font-size: 16px;
+       }
+       button.btn{
+        color:#202020;
+        background-color: white;
+        margin-bottom: 15px;
+        width: 100%;
+        border-radius: 5pt;
+        padding: 5px;
+        font-size: 15px;
+    }
+    input.btn:active{
+        color:#202020;
+        background-color: white;
+    }
+    button.btn:active{
+        color: white;
+        background-color: #202020;
+    }
+
+       .btn i{
+        margin: 0 15px;
+       }
+       input:focus{
+        border: 1px solid #ddd;
+       }
+       
+       
+       }
+     
+     }
+    
+    
+.verifyEmail{
+    width: 100%; height: 93vh;
+    position: relative;
+    .divimg{
+         height:80%;
+    }
+    .divimg img{
+        border-radius: 5pc;
+    }
+    .mainDiv{
+        padding: 15px;
+        position: absolute;
+        width: 30%;height: 60%;
+        top: 40%; left: 50%;
+        transform: translate(-50% ,-50%);
+        text-align: center;
+    }
+    .loginbtn{
+        font-size: 22px;
+        background-color: #202020;
+        border-radius: 1pc;
+        color: white;
+        padding:8px 15px;
+    }
+    .btn{
+        margin-top: 15px;
+    }
+    p{
+        margin-bottom: 15px;
+    }
+}
+    

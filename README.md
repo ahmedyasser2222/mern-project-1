@@ -1,2 +1,2 @@
 # mern-project-1
-this site made by react , node
+this site created by node , react

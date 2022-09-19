@@ -1,0 +1,169 @@
+.con-profile{
+    margin-top: 50px;
+    width: 100%;
+}
+.con-profile .profile{
+  position: absolute;
+  top:50% ;left: 50%;
+  width: 50%; height: 450px;
+  transform: translate(-50% ,-50%);
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+.con-profile .head{
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+.con-profile .head button{
+    padding: 8px 12px;
+    cursor: pointer;
+    border: none;
+    border-right: 1px solid #ddd;
+    background-color: transparent;
+}
+.con-profile .head button:hover{
+    background-color: #ddd;
+}
+.con-profile .head button.active{
+    background-color: #ddd;
+}
+.con-profile .card{
+    width: 100%;
+    display: none;
+    transition: all 1s;
+}
+.con-profile .main-card{
+    display: block;
+}
+.con-profile .top{
+    display: flex;
+    height: 80px;
+    padding: 15px 0;
+}
+.con-profile .top .divimg{
+    width: 20%;
+}
+.con-profile .top img{
+    object-fit: contain;
+}
+.con-profile .top p{
+    color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    margin-top: 5px;
+}
+.con-profile .info{
+    padding: 15px;
+}
+.con-profile input{
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 50%;
+}
+.con-profile input.submit{
+    cursor: pointer;
+    margin-top: 15px;
+}
+.con-profile input.submit:active{
+    background-color: transparent;
+}
+.con-profile .con-orders{
+    height: max-content;
+}
+.con-profile .orders_{
+    height: 340px;
+    overflow:auto ; 
+}
+.con-profile .order_{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    height: max-content;
+    text-align: center;
+    border-bottom: 1px solid #dddd;
+    cursor: pointer;
+}
+.con-profile .order_:hover{
+    background-color: #ddd;
+}
+.con-profile .head-order{
+    padding: 5px; 
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    font-weight: bolder;
+}
+.con-profile .orders_ .divimg{
+    width: 13%;
+}
+.con-orders .order_ img{
+    object-fit: contain;
+}
+.con-profile .orders_ .title{
+    width: 13%;
+}
+.con-profile .head-order div{
+    width: 14%; 
+}
+.con-profile .order_ div:not(.product_ , .products_ ){
+    width: 14%;
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    
+}
+.con-profile .count{
+    width: 7%;
+}
+.con-profile .products_{
+    width: 55%;
+    height: max-content;
+}
+.con-profile .product_{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 1px 0;
+    height: 50px;
+    text-align: center;
+}
+.con-orders .date{
+    font-size: 11px;
+}
+.con-profile .price{
+    flex: 14%;
+}
+.con-profile .count{
+    flex: 7%;
+}
+.con-profile .orders_ .divimg{
+    flex: 10%; 
+}
+.con-profile .orders_ .title{
+    flex: 16%;
+    font-size: 14px;
+}
+.con-profile .order_ p{
+    align-items: center;
+}
+.con-profile i{
+    margin: 0px 4px;
+    cursor: pointer;
+    padding: 3px;
+    border-radius: 1px;
+}
+.con-profile .title p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.con-profile i:hover{
+    background-color: white;
+}
+.con-profile .not-orders{
+    padding: 10px 0;
+    text-align: center;
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

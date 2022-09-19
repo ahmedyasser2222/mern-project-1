@@ -1,0 +1,119 @@
+
+.cart{
+    margin-top: 50px;
+}
+.cart .con-cart{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+.cart .left{
+    width:65% ;
+
+}
+.cart .right{
+    width: 30%;
+}
+.cart i{
+    margin-left: 10px;
+}
+.cart .cards{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+.cart .card{
+    display: flex;
+    flex-direction: row;
+    height: max-content;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+    padding: 5px 0;
+}
+
+.cart .cards .divimg{
+    width: 100px; height: 100px;
+}
+.cart .divimg img{
+    object-fit: contain;
+}
+.cart h3{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.cart input[type=number]::-webkit-inner-spin-button, 
+.cart [type=number]::-webkit-outer-spin-button  { 
+    appearance: none;
+  -webkit-appearance: none; 
+  -moz-appearance: textfield;
+}
+.cart input.count{
+    width: 50px;height: 30px;
+    font-size: 18px;
+    text-align: center;
+    border: none;outline: none;
+}
+.cart .btns button{
+    background-color: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+.cart .btns{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.cart h4{
+    font-weight: 100;
+}
+.cart .card p{
+    position: absolute;
+    top: 80%; left: 0;
+}
+.cart .action{
+    display: flex;
+    align-items: center;    
+    width: 80px;
+    justify-content: space-between;
+    font-size: 18px;
+    padding: 0 15px;
+}
+.cart .desc{
+    margin-left:15px ;
+    position: relative;
+    width: 400px;
+}
+.cart .set{
+display: flex;
+justify-content: space-between;
+padding: 7px; margin-top: 5px;
+font-size: 18px;
+}
+.cart .set button{
+    width: 50%;
+    background-color:  blue;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 8px 12px ;
+    border-radius: 5px;
+    position: relative;
+    left: 25%;
+    cursor: pointer;
+}
+.cart .set button:active{
+    background-color: white;
+    color: black;
+}
+
+.no-product{
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+}
+
+
+

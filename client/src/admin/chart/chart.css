@@ -1,0 +1,12 @@
+.chart select{
+ width: 50%;
+ padding: 5px;
+ font-size: 14px;
+ outline: none;
+ border: 1px solid #ddd;
+ border-radius: 5px;
+}
+.chart option{
+    border: 1px solid #ddd;
+    padding: 3px;
+}

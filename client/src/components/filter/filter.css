@@ -1,0 +1,93 @@
+.con .cards{
+  display: flex;
+  flex-wrap: nowrap ;
+  gap: 20px;
+  justify-content: center;
+  width: max-content;
+  padding: 5px;
+  scroll-behavior: smooth;
+}
+.con button div{
+  display: none;
+  position: absolute;
+  top:100% ; left: 0;
+  width: max-content; height: max-content;
+  margin-top: 5px;
+  font-size: 16px;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+}
+.con .more{
+  font-size: 18px;
+}
+.con .more i{
+  display: inline;
+}
+.con p{
+  position: absolute;
+  bottom: 3px; left: 5px;
+  width: max-content; height: max-content;
+}
+.con{
+  position: relative;
+  width: 95%;
+  height: max-content;
+  overflow: hidden;
+  margin: 20px auto;
+  padding: 20px 0;
+  text-align: center;
+} 
+.con a{
+   font-size: 40px;
+  width: 40px; height: 40px;
+  position: absolute; 
+  margin-top: 3px;
+}
+.con a.next{
+  top: 50%; left: 10px;
+  transform: translate(-50% , -50%);
+  color: black;
+}
+.con .conin{
+  overflow: hidden;
+  width: 95%;
+  margin: auto;
+  scroll-behavior: smooth;
+  overflow-x: scroll ;
+    -ms-overflow-style: none;
+}
+.con .conin::-webkit-scrollbar{
+  display: none;
+}
+.con a.prev{
+  transform: translate(-50% , -50%);
+  top: 50%;  
+  left: 99%;
+  color: black;
+}
+.con a:hover{
+  
+  cursor: pointer;
+}
+.con h3{
+    font-weight: bold;
+    cursor: pointer;
+}
+.con h3:hover{
+    text-decoration: underline;
+}
+.con label{
+    font-size: 23px;
+    font-weight: bolder;
+}
+.con i{
+    margin: 0 5px;
+}
+.con .head{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 5px ;
+}

@@ -1,0 +1,21 @@
+.admin{
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+}
+.admin .side{
+    flex: 2;
+}
+.admin .conadmin{
+    flex: 12;
+}
+.admin .widegts{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 25px 0;
+    margin-right: 25px;
+}
+.admin .chart{
+    width: 70%;
+}

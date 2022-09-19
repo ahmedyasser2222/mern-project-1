@@ -1,0 +1,62 @@
+.sidebar{
+    flex: 1;
+    max-height: 100vh;
+    border-right: 1px solid #ddd;
+    position: sticky;
+    top: 0; 
+    width: 100%;
+    height: 90vh;
+}
+.sidebar .top{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar 
+.sidebar .top .logo{
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+}
+.sidebar .fa{
+    margin-right: 8px;
+    color: blueviolet;
+}
+.sidebar .center{
+    padding-left: 10px;
+}
+.sidebar ul{
+    list-style: none;
+    margin: 0; padding: 0;
+}
+.sidebar .title{
+    font-size: 10px;
+    margin: 3px 0 0 0; padding: 0;
+}
+.sidebar li span{
+    font-weight:bolder;
+    cursor: pointer;
+}
+.sidebar li{
+    margin: 8px 0;
+}
+.sidebar .title{
+    font-size: 14px;
+}
+.sidebar .bottom{
+    display: flex;
+    justify-content: center;
+}
+.sidebar .bottom div{
+    width: 20px; height: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid blue;
+    margin: 5px;
+    user-select: none;
+}
+.sidebar .bottom .white{
+    background-color: white;
+}
+ 

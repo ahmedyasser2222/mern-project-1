@@ -1,0 +1,72 @@
+.cates{
+    display: flex;
+    width: 100%; height: max-content;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+    margin: 20px 0;
+}
+ .cates .card{
+    width: 21%;
+    height:max-content ;
+    perspective: 1000px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+   overflow: hidden;
+   border-top-left-radius: 8pc;
+   border-top-right-radius: 8pc;
+   margin: 0 30px;
+  }
+  .cates .inner-card{
+      position: relative;
+      width: 100%;
+      height: 230px;
+      transform-style: preserve-3d;
+      text-align: center;
+      transition:all 1s;
+  }
+  .cates .front-card , .back-card{
+      position: absolute;
+      width: 100%;height: 100%;
+      backface-visibility: hidden;
+  }
+  .cates  .front-card img{
+      position: absolute;
+      top: 0;left: 0;width: 100%;
+      object-fit: cover;height: 100%;
+      border-radius: 15pc;  
+  }
+  .cates .back-card{
+      background-color: #ccc;
+      color: white;
+      transform: rotateY(180deg);
+      border-radius : 15pc;
+      border: 1px solid;
+      z-index: -1;
+
+  }
+  .cates .card:hover .inner-card{
+      transform: rotateY(180deg)
+  }
+  .cates .card h2{
+    padding: 5px 0;
+  }
+  .cates .card p{
+    position: absolute;
+    top: 50%;left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px 12px
+  }
+  .cates .card p .link {
+    color: black;
+  }
+  .cates .card p .link:hover {
+    text-decoration: underline;
+  }
+  .cates .card:hover .back-card{
+      transition: 1s;
+      
+  }
