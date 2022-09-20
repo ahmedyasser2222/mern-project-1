@@ -21,7 +21,7 @@ function Navbar(props) {
             <h1>ShOp</h1>
           </Link>
         </div>
-       <div className="menu">
+       <div className="menu" style={{display:"none"}}>
           <i className="fa fa-bars"></i>
        </div>
         <div className="links">
