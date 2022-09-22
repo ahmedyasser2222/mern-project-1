@@ -20,9 +20,7 @@ function Profile(props) {
     password: "",
   });
   const [orders, setOrders] = useState([]);
-  const [products, setProducts] = useState([
-    { image: "", title: "", price: "" },
-  ]);
+  const [loading, setLoading] = useState(true);
   const [updatedPassword, setUpdatedPassword] = useState({
     curentPassword: "",
     newPassword: "",
@@ -40,12 +38,13 @@ function Profile(props) {
     getUser();
   }, []);
   const getOrders = async () => {
+    setLoading(true)
     try {
       const res = await axios.get(`${API}/api/order/user`, {
         headers: { token: localStorage.getItem("token") },
       });
       setOrders(res.data.orders);
-     // setProducts(res.data);
+      setLoading(false)
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
@@ -212,7 +211,7 @@ function Profile(props) {
             </div>
           </div>
           <hr />
-          {orders.length > 0 ? (
+          {!loading ? (
             <div className="con-orders">
               <div className="orders_">
                 <div className="head-order ">
@@ -224,12 +223,12 @@ function Profile(props) {
                   <div className="status">Status</div>
                   <div className="action">Action</div>
                 </div>
-                {orders.map((order) => {
+                {orders ? orders.map((order) => {
                   return (
                     <>
                       <div className="order_" key={order._id}>
                         <div className="products_">
-                          {products ? (
+                          {
                             order.products.map((product) => {
                               return (
                                 <>
@@ -267,9 +266,7 @@ function Profile(props) {
                                 </>
                               );
                             })
-                          ) : (
-                            <p>product</p>
-                          )}
+                          }
                         </div>
                         <div className="date">
                           {moment(order.createdAt).format(`DD/MM/YYYY`)}
@@ -287,12 +284,13 @@ function Profile(props) {
                       </div>
                     </>
                   );
-                })}
+                }) : <div className="not-orders">You not have orders</div>}
+
               </div>
             </div>
           ) : (
-            <div className="not-orders">You not have orders</div>
-          )}
+            <div className="not-orders">Loading...</div>
+          )} 
         </div>
       </div>
     </div>
