@@ -12,8 +12,14 @@ function Cart() {
   const user=JSON.parse(localStorage.getItem("user"))
    useEffect(()=>{
     async function getData(){
-      const res =await axios.get(`${API}/api/cart`,{headers:{token:localStorage.getItem("token")}})
-      setData(res.data)
+    setLoading(true)
+      try {
+        const res =await axios.get(`${API}/api/cart`,{headers:{token:localStorage.getItem("token")}})
+         setData(res.data.products)
+         setLoading(false)
+      } catch (error) {
+        setLoading(false)
+      }
     }
     getData()
    },[])
@@ -27,6 +33,9 @@ function Cart() {
   const [totalPrice , setTotalPrice]=useState(0)
   const [price ,setPrice]=useState(0)
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  console.log(selectProduct)
   const toOrder=()=>{
     dispatch(setProducts({ products:selectProduct,count:countProductSelected ,totalPrice}))
     history('/order')
@@ -34,7 +43,7 @@ function Cart() {
   const changePrice = (product, x) => {
     const newData = [...data];
     newData.filter((d) => {
-      if (d.productId == product.productId) {
+      if (d.productId._id == product.productId._id) {
         d.quantity += x;
         calTotalPrice()
         const p = selectProduct.indexOf(product);
@@ -48,7 +57,7 @@ function Cart() {
   const calTotalPrice=()=>{
     var f=0
     for(let i=0 ; i<selectProduct.length ; i++){
-       f +=selectProduct[i].quantity * selectProduct[i].price
+       f +=selectProduct[i].quantity * selectProduct[i].productId.price
     }
     setTotalPrice(f)
     setPrice(f)
@@ -57,16 +66,16 @@ function Cart() {
     if (e.target.checked) {
       setSelectProduct((prev) => [...prev, product]);
       setCountProductSelected(countProductSelected + product.quantity);
-      setTotalPrice(totalPrice + (product.quantity * product.price))
-      setPrice(price + (product.quantity * product.price))
+      setTotalPrice(totalPrice + (product.quantity * product.productId.price))
+      setPrice(price + (product.quantity * product.productId.price))
     } else {
       let set = [...selectProduct];
       const index = set.indexOf(product);
       set.splice(index, 1);
       setSelectProduct(set);
       setCountProductSelected(countProductSelected - product.quantity);
-      setTotalPrice(totalPrice - (product.quantity * product.price))
-      setPrice(price - (product.quantity * product.price) )
+      setTotalPrice(totalPrice - (product.quantity * product.productId.price))
+      setPrice(price - (product.quantity * product.productId.price) )
     }
   };
   const deleteItem=async(product)=>{
@@ -77,8 +86,8 @@ function Cart() {
       set.splice(indexs, 1);
       setSelectProduct(set);
       setCountProductSelected(countProductSelected - product.quantity);
-      setTotalPrice(totalPrice - (product.quantity * product.price))
-      setPrice(price - (product.quantity * product.price) )
+      setTotalPrice(totalPrice - (product.quantity * product.productId.price))
+      setPrice(price - (product.quantity * product.productId.price) )
     }
     // to delete from cards
     const newData=[...data]
@@ -86,12 +95,10 @@ function Cart() {
     newData.splice(index,1)
     setData(newData)
     dispatch(decreament())
-    await axios.delete(`${API}/api/cart/delete/${user._id}/${product.productId}`)
+    await axios.delete(`${API}/api/cart/delete/${user._id}/${product.productId._id}`)
     .then((e)=>notifySuccess(e.data.message))
     .catch(e=>{errorNotify(e.response.data.message)})
   }
-  
-  
   return (
     <div className="cart container">
       <div className="con-cart">
@@ -100,19 +107,19 @@ function Cart() {
             Shopping Cart
             <i className="fa fa-shopping-cart"></i>
           </h2>
-          {data.length ? 
+          {!loading ? 
           <div className="cards">
-          {data ? (
+          {data.length  ? (
             data.map((e) => {
               return (
                 
-                  <div className="card" key={e.productId}>
+                  <div className="card" key={e.productId._id}>
                     <div className="divimg">
-                      <img src={e.image} />
+                      <img src={e.productId.image} />
                     </div>
                     <div className="desc">
-                      <h3 onClick={s=>history(`/product/${e._id}`)}>{e.title} </h3>
-                      <h4>Price : {e.price} $</h4>
+                      <h3 onClick={s=>history(`/product/${e.productId._id}`)}>{e.productId.title} </h3>
+                      <h4>Price : {e.productId.price} $</h4>
                       <p>متوفر حاليا</p>
                     </div>
                     <div className="btns">
@@ -143,10 +150,10 @@ function Cart() {
               );
             })
           ) : (
-            <></>
+            <div className="no-product">Not Found  Products</div>
           )}
         </div>
-        : <div className="no-product">Not Found  Products</div>}
+        : <div className="no-product">Loading...</div>}
 
           
         </div>

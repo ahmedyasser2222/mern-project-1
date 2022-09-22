@@ -7,5 +7,6 @@
 
 # production
 /build
+.env
 
 

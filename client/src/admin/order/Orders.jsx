@@ -7,18 +7,21 @@ import {API} from "../../API"
 function Orders(props) {
     useEffect(()=>{
      async function getData(){
+      setLoading(true)
      try {
          const res =await axios.get(`${API}/api/order`,{headers:{token:localStorage.getItem("token")}})
-          setData({products:res.data.products ,orders:res.data.orders}) 
+          setData(res.data.orders) 
+          setLoading(false)
      } catch (error) {
+      setData([])
+      setLoading(false)
      }
      }
      getData()
     },[])
-    const [data,setData]=useState({
-        orders:[{quantity:2}],
-        products:[{price:2}]
-    })
+
+    const [data,setData]=useState([])
+    const [loading , setLoading]=useState(true)
   return (
     <div className="admin order_admin">
       <div className="side">
@@ -35,79 +38,80 @@ function Orders(props) {
         </div>
         <div className="con-ords">
           <div className="ords">
-            {data.orders.length >1 ? 
-            data.orders.map(order=>{
-                return(
-                    <>
-                    <div className="ord">
-              <div className="prods">
-                {data.products[data.orders.indexOf(order)].map(product=>{
-                    return(
-                        <div className="prod">
-                  <div className="img_product">
-                    <img src={product.image} />
-                  </div>
-                  <div className="title">
-                    <h4>{product.title}</h4>
-                    <div className="price">
-                      <p>price : {product.price}</p>
-                      <p>count : {order.products[data.products[data.orders.indexOf(order)].indexOf(product)].quantity}</p>
-                      <p>total : {product.price * order.products[data.products[data.orders.indexOf(order)].indexOf(product)].quantity}</p>
-                      <p><i className="fa fa-trash-o"></i></p>
+           {!loading ?
+            data.length > 0 ? 
+              data.map(order=>{
+                  return(
+                      <>
+                      <div className="ord">
+                <div className="prods">
+                  {order.products.map(product=>{
+                      return(
+                          <div className="prod">
+                    <div className="img_product">
+                      <img src={product.productId.image} />
+                    </div>
+                    <div className="title">
+                      <h4>{product.productId.title}</h4>
+                      <div className="price">
+                        <p>price : {product.productId.price}</p>
+                        <p>count : {product.quantity}</p>
+                        <p>total : {product.productId.price * product.quantity}</p>
+                        <p><i className="fa fa-trash-o"></i></p>
+                      </div>
                     </div>
                   </div>
+                      )
+                  })}
+               
                 </div>
-                    )
-                })}
-             
+                <div className="user">
+                  <div className="set">
+                  <label>Name </label>
+                  <p>{order.name}</p>
+                  </div>
+                  <div className="set">
+                  <label>Govern </label>
+                  <p>{order.governorate}</p>
+                  </div>
+                  <div className="set">
+                  <label>City </label>
+                  <p>{order.address}</p>
+                  </div>
+                  <div className="set">
+                  <label>Phone </label>
+                  <p>{order.mobileNumber}</p>
+                  </div>
+                  <div className="set">
+                  <label>Products </label>
+                  <p>{order.countProducts}</p>
+                  </div>
+                  <div className="set">
+                  <label>SE </label>
+                  <p>35</p>
+                  </div>
+                  <div className="set">
+                  <label>Total Price </label>
+                  <p>{order.price}</p>
+                  </div>
+                  <div className="set">
+                      <label>notes  </label>
+                      <p></p>
+                  </div>
+                  <div className="btns">
+                      <button className="confirm">Confirm Order</button>
+                      <button>Cancel Order</button>
+                      <button>Delay Order</button>
+                  </div>
+                </div>
+  
               </div>
-              <div className="user">
-                <div className="set">
-                <label>Name </label>
-                <p>{order.name}</p>
-                </div>
-                <div className="set">
-                <label>Govern </label>
-                <p>{order.governorate}</p>
-                </div>
-                <div className="set">
-                <label>City </label>
-                <p>{order.address}</p>
-                </div>
-                <div className="set">
-                <label>Phone </label>
-                <p>{order.mobileNumber}</p>
-                </div>
-                <div className="set">
-                <label>Products </label>
-                <p>{order.countProducts}</p>
-                </div>
-                <div className="set">
-                <label>SE </label>
-                <p>35</p>
-                </div>
-                <div className="set">
-                <label>Total Price </label>
-                <p>{order.price}</p>
-                </div>
-                <div className="set">
-                    <label>notes  </label>
-                    <p></p>
-                </div>
-                <div className="btns">
-                    <button className="confirm">Confirm Order</button>
-                    <button>Cancel Order</button>
-                    <button>Delay Order</button>
-                </div>
-              </div>
-
-            </div>
-            <hr />
-                    </>
-                )
-            })
-            : <div className="not">There are no products
-            </div>}
+              <hr />
+                      </>
+                  )
+              })
+              : <div className="not">There are no products</div>
+             : <div className="not">Loading...</div>}
           </div>
         </div>
       </div>

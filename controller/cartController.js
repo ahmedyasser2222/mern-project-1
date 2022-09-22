@@ -2,7 +2,6 @@ const Cart=require("../model/Cart")
 const Product=require("../model/Products")
 const asyncErrorPattern=require("../middelware/asyncError")
 const ErrorHander=require("../utile/errorhandler")
-// return nxt(new ErrorHander("Product not added", 404));
 
 const addToCart=asyncErrorPattern(
     async(req,res,nxt)=>{
@@ -31,16 +30,11 @@ const countProductsById=asyncErrorPattern(
 )
 const getProducts=asyncErrorPattern(
     async(req,res,nxt)=>{
-        const products=[]
-        console.log(req.user)
         const data=await Cart.findOne({userId : req.user._id})
+        .select("products -_id")
+        .populate("products.productId" , "title image price")
         if(!data) return nxt(new ErrorHander("Not Found Products",401))
-        for(let i=0 ; i < data.products.length ; i++){
-         const product =await Product.findById(data.products[i].productId) 
-         if(product)
-          products.push({productId:product._id , image:product.image , title:product.title , price:product.price ,quantity:1})
-        }
-        res.status(200).json(products)
+        res.status(200).json(data)
     }
 )
 const deleteProduct=asyncErrorPattern(

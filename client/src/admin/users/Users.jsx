@@ -7,13 +7,17 @@ import {API} from "../../API"
 function Users(props) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-
+  console.log(Boolean(data))
   useEffect(() => {
     async function getUsers() {
+      setLoading(true)
       try {
         const res = await axios.get(`${API}/api/user` ,{headers:{token:localStorage.getItem("token")}});
         setData(res.data.users);
+        setLoading(false)
       } catch (error) {
+        setData([])
+        setLoading(false)
       }
     }
     getUsers();
@@ -47,7 +51,8 @@ function Users(props) {
           </button>
         </div>
         <div className="table">
-          {data ? (
+          {!loading ? 
+          data ? (
             <table>
 
                <thead>
@@ -80,7 +85,7 @@ function Users(props) {
             </table>
           ) : (
             <div className="not-user">There are no users</div>
-          )}
+          ) : <div className="not-user">Loading...</div>}
         </div>
       </div>
     </div>

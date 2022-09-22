@@ -61,7 +61,7 @@ function Products_admin(props) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((product) => {
+                {data.length > 0 ? data.map((product) => {
                   return (
                     <tr>
                       <td class="column1 col"><img src={product.image}/></td>
@@ -75,11 +75,11 @@ function Products_admin(props) {
 
                     </tr>
                   );
-                })}
+                }) : <div>There are not Products </div>}
               </tbody>
             </table>
           ) : (
-            <div className="not-user">There are no products</div>
+            <div className="not-user">Loading...</div>
           )}
         </div>
       </div>

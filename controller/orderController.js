@@ -15,18 +15,9 @@ const setOrder=asyncErrorPattern(
 const getAllOrdersbyAdmin=asyncErrorPattern(
     async(req,res,nxt)=>{
         const orders=await Order.find({})
+        .populate("products.productId", "title image price")
         if(!orders)  nxt(new ErrorHander("Not Found orders",401))
-        
-        let products=[]
-        for(let i=0 ; i<orders.length ; i++){
-            let list=[]
-            for(let j=0 ; j<orders[i].products.length ; j++){
-                let p=await Product.findById(orders[i].products[j].productId)
-                list.push(p)
-            }
-            products[i]=list
-        }
-        res.status(200).json({orders ,products})
+        res.status(200).json({orders})
     }
 )
 const deleteOrder=asyncErrorPattern(
@@ -38,19 +29,11 @@ const deleteOrder=asyncErrorPattern(
 )
 const getMyOrders=asyncErrorPattern(
     async(req,res,nxt)=>{
-        const orders=await Order.find({userId:req.user._id}).exec()
-        if(!orders) return nxt(new ErrorHander("you not have orders",401))
-        let products=[]
-        for(let i=0 ; i< orders.length || 0 ;i++){
-            let p=[]
-            for(let j=0 ; j < orders[i].products.length ; j++){
-                let product=await Product.findById(orders[i].products[j].productId)
-                 p.push(product)                  
-            }
-            products[i]=p
-        }
-      
-        res.status(200).json({message:"success" , orders ,products})
+        const orders=await Order.find({userId:req.user._id})
+        .select("price products countProducts status createdAt")
+        .populate("products.productId", "title image price")
+        if(!orders) return nxt(new ErrorHander("you not have orders",401))  
+        res.status(200).json({message:"success" , orders})
     }
 )
 

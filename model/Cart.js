@@ -6,9 +6,10 @@ let CartSchema = new mongoose.Schema(
     products: [
       {
         productId:{
-          type:String ,
+          type:mongoose.Schema.Types.ObjectId ,
           required:true ,
-          unique:false
+          unique:false ,
+          ref:"Product"
         },
         quantity: {
           type: Number,
@@ -20,4 +21,4 @@ let CartSchema = new mongoose.Schema(
   {timestamps :true}
 );
 
-module.exports = mongoose.model("cart", CartSchema)
+module.exports = mongoose.model("carts", CartSchema)

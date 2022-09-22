@@ -109,21 +109,21 @@ function Order(props) {
             {products ? (
               products.map((e) => {
                 return (
-                  <div className="card">
+                  <div className="card" key={e.productId._id}>
                     <div className="divimg">
-                      <img src={e.image} />
+                      <img src={e.productId.image} />
                     </div>
                     <div className="txt">
                       <div className="t-txt">
                         <h3>
-                          {e.title.length >= 20
-                            ? e.title.substring(0, 20) + "..."
-                            : e.title}
+                          {e.productId.title.length >= 20
+                            ? e.productId.title.substring(0, 20) + "..."
+                            : e.productId.title}
                         </h3>
                         <p>count : {e.quantity ? e.quantity : count} </p>
                       </div>
                       <div className="price">
-                        <p>{e.price} $</p>
+                        <p>{e.productId.price} $</p>
                       </div>
                     </div>
                   </div>

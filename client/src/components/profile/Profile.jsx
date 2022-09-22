@@ -45,12 +45,13 @@ function Profile(props) {
         headers: { token: localStorage.getItem("token") },
       });
       setOrders(res.data.orders);
-      setProducts(res.data.products);
+     // setProducts(res.data);
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
     }
   };
+
   const deleteOrder = async (product) => {
     let newOrders = [...orders];
     const index = newOrders.indexOf(product);
@@ -111,6 +112,7 @@ function Profile(props) {
     document.getElementById(cityName).style.display = "block";
     evt.target.className += " active";
   }
+
   return (
     <div className="con-profile">
       <div className="profile">
@@ -228,42 +230,38 @@ function Profile(props) {
                       <div className="order_" key={order._id}>
                         <div className="products_">
                           {products ? (
-                            products[orders.indexOf(order)].map((product) => {
+                            order.products.map((product) => {
                               return (
                                 <>
-                                  <div className="product_">
+                                  <div className="product_" key={product._id}>
                                     <div className="divimg">
                                       <img
                                         src={
-                                          product.image
+                                          product.productId.image
                                         }
                                       />
                                     </div>
                                     <div
                                       className="title"
                                       onClick={(e) =>
-                                        history(`/product/${product._id}`)
+                                        history(`/product/${product.productId._id}`)
                                       }
                                     >
                                       <p>
-                                        {product.title.length >12
-                                        ? product.title.substring(0, 12) + "..."
-                                        : product.title}
+                                        {product.productId.title.length >12
+                                        ? product.productId.title.substring(0, 12) + "..."
+                                        : product.productId.title}
                                       </p>
                                     </div>
                                     <div className="count">
                                       <p>
                                         {
-                                          order.products[
-                                            products[
-                                              orders.indexOf(order)
-                                            ].indexOf(product)
-                                          ].quantity
+                                          product.quantity
                                         }
                                       </p>
                                     </div>
                                     <div className="price">
-                                      <p>{product.price}$</p>
+                                      <p>{product.productId.price}$</p>
                                     </div>
                                   </div>
                                 </>
