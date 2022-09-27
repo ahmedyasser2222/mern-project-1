@@ -118,7 +118,8 @@ const countUser = asyncErrorPattern(async (req, res, nxt) => {
       }
     } 
   ])
-  res.status(200).json({ countUser, countProducts, countOrders ,totalPrice:orders[0].count});
+
+  res.status(200).json({ countUser, countProducts, countOrders ,totalPrice:orders.length > 0 ? orders[0].count :0});
 });
 const getProfile = asyncErrorPattern(async (req, res, nxt) => {
     const user=await User.findById(req.user._id)

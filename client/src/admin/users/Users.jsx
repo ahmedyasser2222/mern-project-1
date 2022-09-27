@@ -53,7 +53,7 @@ function Users(props) {
         <div className="table">
           {!loading ? 
           data ? (
-            <table>
+            <table className="tab">
 
                <thead>
                <tr>

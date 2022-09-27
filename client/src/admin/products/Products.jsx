@@ -64,8 +64,8 @@ function Products_admin(props) {
                 {data.length > 0 ? data.map((product) => {
                   return (
                     <tr>
-                      <td class="column1 col"><img src={product.image}/></td>
-                      <td class="column2 col">{product.title.substring(0,15)+"..."}</td>
+                      <td class="column1 col col-img" ><img src={product.image}/></td>
+                      <td class="column2 col" >{product.title.substring(0,15)+"..."}</td>
                       <td class="column3 col">{product.price}</td>
                       <td class="column4 col">{product.amount}</td>
                       <td class="column4 col">

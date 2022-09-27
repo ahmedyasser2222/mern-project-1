@@ -8,6 +8,7 @@ const ErrorHander=require("../utile/errorhandler")
 const setOrder=asyncErrorPattern(
     async(req,res,nxt)=>{
         req.body.userId = req.user._id
+        console.log(req.body)
         await new Order(req.body).save()
         res.status(200).json({message:"Order Successfully"})
     }

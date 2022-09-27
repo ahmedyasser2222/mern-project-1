@@ -1,26 +1,51 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import "./order.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { API } from "../../API";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 function Order(props) {
   const history = useNavigate();
+  const {state} =useLocation()
   const [valid, setValid] = useState(false);
-  const { products, count, price } = useSelector((state) => state.order);
+  const [products , setProducts] =useState([])
+  const [p ,setP]=useState([])
+  const [count , setCount] =useState(0)
+  const [price , setPrice]=useState(0)
   const [order, setOrder] = useState({
     name: "",
     mobileNumber: "",
     mobileNumber2: "",
     governorate: "",
-    address: "",
+    address: "cairo",
     notes: "",
-    products: products,
+    products: p,
     countProducts:count,
     price:price,
   });
+  //
+  
+  useEffect(()=>{
+    function getData(){
+      setProducts(e=>state.products)
+      setCount(e=>state.count)
+      setPrice(e=>state.totalPrice) 
+      
+      const pro=[]
+      for (let index = 0; index < state.products.length; index++) {
+        pro.push({productId:state.products[index].productId._id , quantity:state.products[index].quantity})
+      }
+      setOrder(prev=>{
+        return {...prev , countProducts:state.count ,price:state.totalPrice , products:pro}
+      })
+    }
+    getData()
+    
+  },[])
 
+  console.log(order)
   const notifyError = (e) => toast.error(e);
   const notify = (e) => toast.success(e);
   const handleChange = (e) => {
@@ -44,6 +69,7 @@ function Order(props) {
       notifyError(error.response.data.message);
     }
   };
+
   return (
     <div className="order">
       <div className="con-order container">
@@ -109,7 +135,7 @@ function Order(props) {
             {products ? (
               products.map((e) => {
                 return (
-                  <div className="card" key={e.productId._id}>
+                  <div className="card" key={e.productId._id} style={{borderTop:"1px solid #ddd"}}>
                     <div className="divimg">
                       <img src={e.productId.image} />
                     </div>

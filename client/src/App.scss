@@ -66,23 +66,38 @@ nav{
     height: max-content;
 }
 nav .links{
-    background-color: black;
-    border: 1px solid;
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    background-color: #227BC1;
     padding: 10px;
+    transition:  height 1s;
+    display: none;
 }
 nav .links ul{
     //display: none;
     flex-direction: column;
 }
 nav .links .divul {
-    position: absolute;
-    left: 0;
-    width: max-content;
-    color: white;
-    z-index: 1;
-    background-color: #202020;
+    transition:  height 1s;
+    position: relative;
+    background-color: transparent;
+    box-shadow: none;
 }
-
+.nav nav .menu{
+    display: inline;
+}
+.nav nav .links.show{
+    height: max-content;
+    display: block;
+}
+ .app .admin .side{
+    flex: 0;
+    width: 0;
+}
+.app .admin .menu{
+    display: block;
+}
 
 }
 

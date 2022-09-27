@@ -1,5 +1,5 @@
 .nav{
-  background-color: #202020;
+  background-color: #227BC1;
   color: white;
   position: fixed;
   top: 0;left: 0;
@@ -22,6 +22,10 @@ justify-content: space-between;
 .nav i{
   margin: 0 10px 0 0px;
 }
+.nav .links{
+  transition: all 1s;
+  height: 0;
+}
 .nav .divul{
     position: absolute;
     top: 100%;
@@ -31,7 +35,10 @@ justify-content: space-between;
     padding: 8px 12px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2 );
     z-index: 1;
-    background-color: #202020;
+    background-color: #227BC1;
+    transform: all 1s;
+    overflow: hidden;
+    height: 0;
 }
 .nav .divul ul{
   width: 100%;
@@ -43,11 +50,28 @@ justify-content: space-between;
  text-align: center;
  width: 100%;
  padding: 5px 10px;
- border-bottom: 1px solid white;
+}
+.nav .divul ul li:hover{
+  text-decoration: underline;
 }
 .nav .divul .link{
   color: white;
 }
+.nav .navbar{
+  position: relative;
+}
 .nav ul li:hover div{
    display: block;
+   height: max-content;
+  }
+  .nav .menu{
+    position: absolute;
+    top: 50%;right: 15px;
+    transform: translate(0% ,-50%);
+    font-size: x-large;
+    cursor: pointer;
+    display: none;
+  }
+  .nav .menu:hover{
+     color: black;
   }

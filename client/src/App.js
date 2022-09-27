@@ -29,7 +29,6 @@ import Profile from "./components/profile/Profile";
 import Order from "./components/order/Order.jsx";
 import Products_admin from "./admin/products/Products.jsx";
 import Products from "./components/products/Products";
-import Table from "./table/Table";
 import Product_admin from "./admin/products/Product";
 import Orders from "./admin/order/Orders";
 import Message from "./admin/message/Message";
@@ -37,19 +36,22 @@ import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
-  useEffect(async() => {
-    
-      let user = localStorage.getItem("user");
-      if (user === (null || "undefined")) return dispatch(logout());
-      dispatch(loginSuccess(JSON.parse(user)));
-       user = JSON.parse(user);
-      if (user == null || "undefined") {
+  useEffect(() => {
+   async function getData(){
+    let user = localStorage.getItem("user");
+      if (user === (null || "undefined")) {
         dispatch(setCountCart(0));
-      }
+        return dispatch(logout());
+      }else{
+        dispatch(loginSuccess(JSON.parse(user)));      
         const res = await axios.get(`${API}/api/cart/count`, {
           headers: { token: localStorage.getItem("token") },
         });
         dispatch(setCountCart(res.data.count)); 
+      }
+        
+   }
+   getData()
   }, []);
 
   return (

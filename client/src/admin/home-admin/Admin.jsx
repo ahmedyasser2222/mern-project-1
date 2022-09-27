@@ -14,9 +14,25 @@ function Admin(props) {
         }
         getCount()
     },[])
+    const  openNav = ()=> {
+        document.getElementById("side").style.flex = 8;
+       // document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+      function closeNav() {
+        document.getElementById("side").style.flex =0;
+       // document.getElementById("main").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
+        console.log("s")
+      }
     return (
-        <div className='admin'>
-                <div className="side">
+             <div className='admin' id="main">
+                <div className="menu" onClick={e=>openNav()}>
+                    <i className='fa fa-bars' ></i>
+                </div>
+                
+                <div className="side" id='side'>
+                <a  className="closebtn" onClick={e=>closeNav()}>&times;</a>
                      <Sidebar />
                 </div>
                 <div className="conadmin">

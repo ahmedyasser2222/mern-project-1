@@ -91,24 +91,24 @@
       top: 0;
   }
   table tbody tr td:nth-child(1):before {
-      content: "Date";
+      content: "Image";
   }
   table tbody tr td:nth-child(2):before {
-      content: "Order ID";
+      content: "Title";
   }
   table tbody tr td:nth-child(3):before {
-      content: "Name";
-  }
-  table tbody tr td:nth-child(4):before {
       content: "Price";
   }
+  table tbody tr td:nth-child(4):before {
+      content: "Amount";
+  }
   table tbody tr td:nth-child(5):before {
-      content: "Quantity";
+      content: "Actions";
   }
-  table tbody tr td:nth-child(6):before {
-      content: "Total";
+ 
+  .col-img{
+    height: 50px;
   }
-
   .column4,
   .column5,
   .column6 {

@@ -5,7 +5,6 @@ import {useDispatch} from "react-redux"
 import axios from "axios"
 import {API}  from "../../API"
 import {decreament} from "../../redux/slices/cartSlice"
-import {setProducts} from "../../redux/slices/order"
 
 import {toast} from "react-toastify"
 function Cart() {
@@ -35,10 +34,8 @@ function Cart() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(selectProduct)
   const toOrder=()=>{
-    dispatch(setProducts({ products:selectProduct,count:countProductSelected ,totalPrice}))
-    history('/order')
+    history('/order', {state:{products:selectProduct, count:countProductSelected ,totalPrice:totalPrice}})
   }
   const changePrice = (product, x) => {
     const newData = [...data];
@@ -62,7 +59,7 @@ function Cart() {
     setTotalPrice(f)
     setPrice(f)
   }
-  const selsetChange = (e, product) => {
+  const selectChange = (e, product) => {
     if (e.target.checked) {
       setSelectProduct((prev) => [...prev, product]);
       setCountProductSelected(countProductSelected + product.quantity);
@@ -141,7 +138,7 @@ function Cart() {
                       <input
                         type={"checkbox"}
                         className="select"
-                        onChange={(s) => selsetChange(s, e)}
+                        onChange={(s) => selectChange(s, e)}
                       />
                       <i className="fa fa-trash-o" onClick={ele=>deleteItem(e)}></i>
                     </div>

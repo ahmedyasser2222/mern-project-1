@@ -1,6 +1,7 @@
 import "./navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import {  useSelector } from "react-redux";
+import { useState } from "react";
 function Navbar(props) {
   const toggel = () => {
     document.getElementById("menu").classList.toggle("toggelShow");
@@ -12,19 +13,23 @@ function Navbar(props) {
   };
   const user = useSelector((state) => state.user.user);
   const { count_cart } = useSelector((state) => state.cart);
-  
+  const [show , setShow]=useState(false)
   return (
     <div className="nav">
-      <nav className="container">
+      <nav className="container navbar">
         <div className="logo">
           <Link to={"/"} className="link">
             <h1>ShOp</h1>
           </Link>
         </div>
-       <div className="menu" style={{display:"none"}}>
+   <div>
+    
+   </div>
+       <div className="menu" style={{display:""}} onClick={e=>setShow(!show)}>
           <i className="fa fa-bars"></i>
        </div>
-        <div className="links">
+
+        <div className={`links  ${show ? "show" : ""}`} >
           <ul>
             {user ? (
               user.isAdmin ? (
@@ -40,7 +45,7 @@ function Navbar(props) {
               <></>
             )}
             <li onClick={toggel0}>
-              categories
+              Categories
               <i className="fa fa-chevron-down"></i>
               <div className="divul" id="menu0">
                 <ul>
@@ -83,6 +88,7 @@ function Navbar(props) {
                 {user && user.name}
                 <i className="fa fa-chevron-down"></i>
                 <div className="divul" id="menu">
+                  <ul>
                   <li>
                     <NavLink to={"/profile"} className="link">
                       <i className="fa fa-user"></i>
@@ -101,6 +107,7 @@ function Navbar(props) {
                       Logout
                     </NavLink>
                   </li>
+                  </ul>
                 </div>
               </li>
             ) : (

@@ -87,4 +87,37 @@ th{
 .conadmin .chek button{
     width: 100%;
 }
+@media screen and (max-width: 992px) {
+    
+    .tab tbody tr td:nth-child(1):before {
+        content: "#";
+    }
+    .tab tbody tr td:nth-child(2):before {
+        content: "Name";
+    }
+    .tab tbody tr td:nth-child(3):before {
+        content: "Order";
+    }
+    .tab tbody tr td:nth-child(4):before {
+        content: "Action";
+    }
+   
+  
+    .column4,
+    .column5,
+    .column6 {
+        text-align: left;
+    }
+    .column4,
+    .column5,
+    .column6,
+    .column1,
+    .column2,
+    .column3 {
+        width: 100%;
+    }
+    tbody tr {
+        font-size: 14px;
+    }
+    }
 

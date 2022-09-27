@@ -55,9 +55,7 @@ function Filter({type ,products }) {
            { 
            products ? products.map(e=>{
             return(
-                 <>
-                 <Card  product={e}/>
-                 </>
+                 <Card  product={e} key={e._id}/>
             )
            }) : <></>
            }

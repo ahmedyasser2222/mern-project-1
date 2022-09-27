@@ -2,9 +2,14 @@
     display: flex;
     gap: 20px;
     margin-top: 50px;
+    position: relative;
 }
 .admin .side{
     flex: 2;
+    overflow: hidden;
+    z-index: 1;
+    background-color: white;
+    transition: all 1s;
 }
 .admin .conadmin{
     flex: 12;
@@ -18,4 +23,20 @@
 }
 .admin .chart{
     width: 70%;
+}
+.admin .menu{
+    position: absolute;
+    top: 0px; left: 0px;
+    padding: 10px;
+    width: 5px; height: 5px;
+    font-size: xx-large;
+    display: none;
+    cursor: pointer;
+    color: #227BC1;
+    border-bottom-right-radius: 5px;
+}
+.admin .menu:hover{
+    background-color: #227BC1;
+    width: max-content;height: max-content;
+    color: white;
 }

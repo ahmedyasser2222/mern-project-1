@@ -275,6 +275,7 @@ function Profile(props) {
                         </div>
                         <div className="status">{order.status}</div>
                         <div className="action">
+                        
                           <i
                             className="fa fa-trash-o"
                             onClick={(e) => deleteOrder(order)}
